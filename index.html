@@ -1,7 +1,37 @@
-<p>Hello 大家好</p>
-<p>我是尼搭锅，这是我的个人网站。</p>
-<p>很高兴你来到这里，你可以在以下网站里找到我</p>
+鼠标点击特效点击鼠标页面就会显示出不同颜色的文字
 
-<ul>
-  <li> <a href="https://zh.wikipedia.org/wiki/God">维基</a> </li>
-</ul>
+<script src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+ /* 鼠标特效 */
+ jQuery(document).ready(function($) {
+     $("body").click(function(e) {
+         var a = new Array("快乐","天真","无忧","幸福","纯真","活泼","纯洁");
+
+        var max = a.length;
+        var min = 0;
+        var num = Math.floor(Math.random()*(max-min+1)+min);
+
+        
+         var $i = $("<span></span>").text(a[num]);
+         var x = e.pageX,
+         y = e.pageY;
+        $i.css({
+            "z-index": 999999999,
+            "top": y - 20,
+             "left": x,
+            "position": "absolute",
+           "font-weight": "bold",           
+           "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+      });
+         $("body").append($i);
+         $i.animate({
+             "top": y - 180,
+            "opacity": 0
+       },
+        1500,
+         function() {
+           $i.remove();
+        });
+    });
+ });
+</script>
